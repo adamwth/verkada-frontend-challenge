@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Direction } from "../../models/Grid";
+import { Data, Direction } from "../../models/Grid";
 import { GridSquare } from "../GridSquare";
-import { data, processCameras, processFloorplan } from "./GridLayout.logic";
+import { processCameras, processFloorplan } from "./GridLayout.logic";
 
-export const GridLayout = () => {
-    const [grid, setGrid] = useState(data);
-    const floorplan = processCameras(processFloorplan(grid.floorplan));
+interface Props {
+    gridData: Data;
+    setGridData: (data: Data) => void;
+}
+
+export const GridLayout = ({ gridData, setGridData }: Props) => {
+    const floorplan = processCameras(processFloorplan(gridData.floorplan));
     const handleClick =
         (row: number, col: number) => (direction: Direction) => {
-            setGrid({
-                ...grid,
-                floorplan: grid.floorplan.map((r, rowIdx) =>
+            setGridData({
+                ...gridData,
+                floorplan: gridData.floorplan.map((r, rowIdx) =>
                     r.map((val, colIdx) => {
                         if (rowIdx !== row || colIdx !== col) return val;
                         return direction;
@@ -34,8 +38,6 @@ export const GridLayout = () => {
         </Container>
     );
 };
-
-const unselect = [-1, -1];
 
 const Container = styled.div`
     display: grid;
