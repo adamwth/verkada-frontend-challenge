@@ -32,3 +32,8 @@ export enum Direction {
     Left = "<",
     None = "0",
 }
+
+export type Position = {
+    row: number;
+    col: number;
+};

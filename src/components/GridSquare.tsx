@@ -3,12 +3,14 @@ import styled from "styled-components";
 import { ReactComponent as CameraIcon } from "../assets/icons/camera.svg";
 import { ReactComponent as Arrow } from "../assets/icons/arrow-up.svg";
 import { ReactComponent as Cross } from "../assets/icons/cross.svg";
-import { Direction, Square, SquareType } from "../models/Grid";
+import { Direction, Position, Square, SquareType } from "../models/Grid";
+import { useDrag, useDrop } from "react-dnd";
 
 interface Props extends Square {
     row: number;
     col: number;
     handleClick: (direction: Direction) => void;
+    handleDrag: (from: Position, to: Position) => void;
 }
 
 export const GridSquare = ({
@@ -18,8 +20,27 @@ export const GridSquare = ({
     row,
     col,
     handleClick,
+    handleDrag,
 }: Props) => {
     const [hover, setHover] = useState(false);
+    const [{ isDragging, canDrag }, dragRef] = useDrag(() => ({
+        type: "camera",
+        item: { row, col },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+            canDrag: monitor.canDrag(),
+        }),
+    }));
+    const [{ isOver, canDrop }, dropRef] = useDrop(() => ({
+        accept: "camera",
+        collect: (monitor) => ({
+            isOver: monitor.isOver(),
+            canDrop: monitor.canDrop(),
+        }),
+        drop: (item: Position) => {
+            handleDrag(item, { row, col });
+        },
+    }));
     return type === SquareType.Wall ? (
         <Wall />
     ) : (
@@ -27,6 +48,7 @@ export const GridSquare = ({
             multiplier={covered}
             onMouseOver={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
+            ref={dropRef}
         >
             {hover && cameraDirection !== Direction.None && (
                 <CancelButton>
@@ -56,7 +78,7 @@ export const GridSquare = ({
                         />
                     )}
                 </VCol>
-                <VCol>
+                <VCol ref={dragRef}>
                     {(cameraDirection !== Direction.None || hover) && (
                         <StyledCameraIcon placing={hover} />
                     )}
@@ -97,7 +119,7 @@ const Base = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
 
-    padding: 0.5vw;
+    padding: 0.25vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,6 +149,7 @@ const StyledCameraIcon = styled(CameraIcon)<{ placing?: boolean }>`
     height: 100%;
     flex: 1;
     opacity: ${(props) => (props.placing ? 0.3 : 1)};
+    cursor: grab;
 `;
 
 const ArrowUp = styled(Arrow)<{ selected: boolean }>`
@@ -167,14 +190,14 @@ const VCol = styled.div`
 `;
 
 const StyledCross = styled(Cross)`
-    width: 12px;
+    width: 10px;
     cursor: pointer;
 `;
 
 const CancelButton = styled.button`
     position: absolute;
-    top: 6px;
-    right: 6px;
+    top: 3px;
+    right: 3px;
     padding: 2px;
     border: none;
     border-radius: 4px;

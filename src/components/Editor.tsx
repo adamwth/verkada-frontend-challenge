@@ -13,6 +13,7 @@ interface Props {
 
 export const Editor = ({ gridData }: Props) => {
     const [grid, setGrid] = useState(gridData);
+    // console.log(grid);
     return (
         <Container>
             <Toolbar>
