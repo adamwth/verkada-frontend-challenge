@@ -57,7 +57,7 @@ export const GridSquare = ({
                     )}
                 </VCol>
                 <VCol>
-                    {(cameraDirection || hover) && (
+                    {(cameraDirection !== Direction.None || hover) && (
                         <StyledCameraIcon placing={hover} />
                     )}
                 </VCol>

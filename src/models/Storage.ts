@@ -3,21 +3,23 @@ import { v4 as uuidv4 } from "uuid";
 
 const SAVED_GRIDS_KEY = "grids";
 
+const floorplan = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 0, 0, 0, 1, "v", 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    [1, 0, 1, 1, 1, 1, 1, 0, 1, 1],
+    [1, 0, "v", 1, 0, 0, 0, 0, 1, 1],
+    [1, 0, 0, 1, ">", 0, 0, 0, "<", 1],
+    [1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
+    [1, 1, 0, 0, 0, 0, "<", 1, 0, 1],
+    [1, 1, 0, 0, 0, 0, "<", 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+];
+
 export const data = {
     width: 10,
     height: 10,
-    floorplan: [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 0, 0, 0, 1, "v", 1, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
-        [1, 0, 1, 1, 1, 1, 1, 0, 1, 1],
-        [1, 0, "v", 1, 0, 0, 0, 0, 1, 1],
-        [1, 0, 0, 1, ">", 0, 0, 0, "<", 1],
-        [1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
-        [1, 1, 0, 0, 0, 0, "<", 1, 0, 1],
-        [1, 1, 0, 0, 0, 0, "<", 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    ],
+    floorplan: floorplan.map((row) => row.map((val) => val.toString())),
 };
 
 interface GridStorage extends Data {
@@ -53,6 +55,7 @@ export const getSavedGrids = (): Record<string, GridStorage> => {
 };
 
 export const saveGrid = (grid: Data) => {
+    console.log(grid);
     const val = localStorage.getItem(SAVED_GRIDS_KEY) || JSON.stringify({});
     const grids = JSON.parse(val);
     const ts = Date.now();

@@ -1,26 +1,9 @@
 import { Direction, Square, SquareType } from "../../models/Grid";
 
-export const data = {
-    width: 10,
-    height: 10,
-    floorplan: [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 0, 0, 0, 1, "v", 1, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
-        [1, 0, 1, 1, 1, 1, 1, 0, 1, 1],
-        [1, 0, "v", 1, 0, 0, 0, 0, 1, 1],
-        [1, 0, 0, 1, ">", 0, 0, 0, "<", 1],
-        [1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
-        [1, 1, 0, 0, 0, 0, "<", 1, 0, 1],
-        [1, 1, 0, 0, 0, 0, "<", 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    ],
-};
-
-export const processFloorplan = (floorplan: (string | number)[][]) => {
+export const processFloorplan = (floorplan: string[][]) => {
     return floorplan.map((row) =>
         row.map((val) => {
-            const type = val === 1 ? SquareType.Wall : SquareType.Space;
+            const type = val === "1" ? SquareType.Wall : SquareType.Space;
             let cameraDirection;
             switch (val) {
                 case "^":
@@ -84,9 +67,4 @@ export const processCameras = (floorplan: Square[][]) => {
     }
 
     return floorplan;
-};
-
-export const grid = {
-    ...data,
-    floorplan: processCameras(processFloorplan(data.floorplan)),
 };

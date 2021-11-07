@@ -1,7 +1,7 @@
 export interface Data {
     width: number;
     height: number;
-    floorplan: (number | string)[][];
+    floorplan: string[][];
     id: string;
     name: string;
 }
@@ -21,8 +21,8 @@ export interface Square {
 }
 
 export enum SquareType {
-    Space = 0,
-    Wall = 1,
+    Space = "0",
+    Wall = "1",
 }
 
 export enum Direction {
@@ -30,5 +30,5 @@ export enum Direction {
     Right = ">",
     Down = "v",
     Left = "<",
-    None = 0,
+    None = "0",
 }
