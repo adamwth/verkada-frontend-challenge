@@ -31,9 +31,6 @@ export const Editor = ({ gridData }: Props) => {
                     >
                         Save
                     </Button>
-                    <Button variant="outlined" startIcon={<Delete />}>
-                        Delete
-                    </Button>
                 </S.ButtonsContainer>
             </S.Toolbar>
             <GridLayout gridData={grid} setGridData={setGrid} />
