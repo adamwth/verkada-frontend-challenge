@@ -22,7 +22,7 @@ export const data = {
     floorplan: floorplan.map((row) => row.map((val) => val.toString())),
 };
 
-interface GridStorage extends Data {
+export interface GridStorage extends Data {
     ts: number;
 }
 

@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { Editor } from "../components/Editor/Editor";
 import { getSavedGrids } from "../models/Storage";
@@ -17,11 +18,13 @@ function App() {
         };
     }, []);
     return (
-        <S.Dashboard>
-            <S.Container>
-                <Editor gridData={gridsList[selectedGrid][1]} />
-            </S.Container>
-        </S.Dashboard>
+        <ThemeProvider theme={S.theme}>
+            <S.Dashboard>
+                <S.Container>
+                    <Editor gridStorage={gridsList[selectedGrid][1]} />
+                </S.Container>
+            </S.Dashboard>
+        </ThemeProvider>
     );
 }
 

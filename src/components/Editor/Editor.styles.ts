@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HRow } from "../common/styles";
+import { HRow, VCol } from "../common/styles";
 
 export const Container = styled.div`
     display: flex;
@@ -12,6 +12,10 @@ export const Toolbar = styled(HRow)`
     justify-content: space-between;
 `;
 
-export const ButtonsContainer = styled(HRow)`
+export const GroupContainer = styled(HRow)`
     gap: 1rem;
+`;
+
+export const Label = styled(VCol)`
+    align-items: flex-start;
 `;

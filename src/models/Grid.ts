@@ -6,12 +6,8 @@ export interface Data {
     name: string;
 }
 
-export interface Grid {
-    width: number;
-    height: number;
+export interface Grid extends Omit<Data, "floorplan"> {
     floorplan: Square[][];
-    id: string;
-    name: string;
 }
 
 export interface Square {
