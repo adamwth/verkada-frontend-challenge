@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, TextField } from "@mui/material";
-import { Delete, SaveAlt } from "@mui/icons-material";
+import { SaveAlt } from "@mui/icons-material";
 import { GridLayout } from "../GridLayout/GridLayout";
-import { GridStorage, saveGrid } from "../../models/Storage";
+import { saveGrid } from "../../models/Storage";
 import * as S from "./Editor.styles";
-import { Data } from "../../models/Grid";
+import { Grid } from "../../models/Grid";
+import { useGrids } from "../../context/GridsContext";
 
 interface Props {
-    gridStorage: GridStorage;
+    grid: Grid;
 }
 
-export const Editor = ({ gridStorage }: Props) => {
-    const [grid, setGrid] = useState<Data>(gridStorage);
-    const date = new Date(gridStorage.ts);
+export const Editor = ({ grid }: Props) => {
+    const date = new Date(grid.ts);
+    const { updateGrid } = useGrids();
     return (
         <S.Container>
             <S.Toolbar>
@@ -24,7 +25,10 @@ export const Editor = ({ gridStorage }: Props) => {
                         defaultValue="Untitled"
                         value={grid.name}
                         onChange={(e) =>
-                            setGrid({ ...grid, name: e.target.value })
+                            updateGrid(grid.id, {
+                                ...grid,
+                                name: e.target.value,
+                            })
                         }
                     />
                     <S.Label>
@@ -46,7 +50,7 @@ export const Editor = ({ gridStorage }: Props) => {
                     </Button>
                 </S.GroupContainer>
             </S.Toolbar>
-            <GridLayout gridData={grid} setGridData={setGrid} />
+            <GridLayout id={grid.id} floorplan={grid.floorplan} />
         </S.Container>
     );
 };

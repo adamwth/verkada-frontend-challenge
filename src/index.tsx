@@ -4,10 +4,13 @@ import "./index.css";
 import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
 import "@fontsource/jost";
+import { GridsProvider } from "./context/GridsContext";
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <GridsProvider>
+            <App />
+        </GridsProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );

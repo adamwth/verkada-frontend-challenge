@@ -1,4 +1,4 @@
-import { Data } from "./Grid";
+import { Grid } from "./Grid";
 import { v4 as uuidv4 } from "uuid";
 
 const SAVED_GRIDS_KEY = "grids";
@@ -22,11 +22,7 @@ export const data = {
     floorplan: floorplan.map((row) => row.map((val) => val.toString())),
 };
 
-export interface GridStorage extends Data {
-    ts: number;
-}
-
-const defaultGrid = (ts: number): Record<string, GridStorage> => ({
+const defaultGrid = (ts: number): Record<string, Grid> => ({
     default: {
         ts,
         id: "default",
@@ -46,15 +42,14 @@ export const loadDefaultGrid = () => {
     );
 };
 
-export const getSavedGrids = (): Record<string, GridStorage> => {
-    loadDefaultGrid();
+export const getSavedGrids = (): Record<string, Grid> => {
     const val =
         localStorage.getItem(SAVED_GRIDS_KEY) ||
         JSON.stringify(defaultGrid(Date.now()));
     return JSON.parse(val);
 };
 
-export const saveGrid = (grid: Data) => {
+export const saveGrid = (grid: Grid) => {
     console.log(grid);
     const val = localStorage.getItem(SAVED_GRIDS_KEY) || JSON.stringify({});
     const grids = JSON.parse(val);
@@ -64,8 +59,8 @@ export const saveGrid = (grid: Data) => {
         JSON.stringify({
             ...grids,
             [grid.id]: {
-                ts,
                 ...grid,
+                ts,
             },
         })
     );

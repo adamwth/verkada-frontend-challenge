@@ -1,13 +1,17 @@
-export interface Data {
+export interface Grid {
     width: number;
     height: number;
-    floorplan: string[][];
+    floorplan: Floorplan;
     id: string;
     name: string;
+    ts: number;
 }
 
-export interface Grid extends Omit<Data, "floorplan"> {
-    floorplan: Square[][];
+export type Floorplan = string[][];
+export type ProcessedFloorplan = Square[][];
+
+export interface ProcessedGrid extends Omit<Grid, "floorplan"> {
+    floorplan: ProcessedFloorplan;
 }
 
 export interface Square {
