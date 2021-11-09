@@ -4,14 +4,14 @@ const SAVED_GRIDS_KEY = "grids";
 
 const floorplan = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 0, 0, 0, 1, "v", 1, 1],
+    [1, 1, 1, 0, 0, 0, 1, 0, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
     [1, 0, 1, 1, 1, 1, 1, 0, 1, 1],
-    [1, 0, "v", 1, 0, 0, 0, 0, 1, 1],
-    [1, 0, 0, 1, ">", 0, 0, 0, "<", 1],
+    [1, 0, 0, 1, 0, 0, 0, 0, 1, 1],
+    [1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
     [1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
-    [1, 1, 0, 0, 0, 0, "<", 1, 0, 1],
-    [1, 1, 0, 0, 0, 0, "<", 1, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+    [1, 1, 0, 0, 0, 0, 0, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
@@ -49,7 +49,7 @@ export const getSavedGrids = (): Record<string, Grid> => {
 };
 
 export const saveGrid = (grid: Grid) => {
-    console.log(grid);
+    console.log(grid.floorplan);
     const val = localStorage.getItem(SAVED_GRIDS_KEY) || JSON.stringify({});
     const grids = JSON.parse(val);
     const ts = Date.now();
