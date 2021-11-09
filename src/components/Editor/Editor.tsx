@@ -13,6 +13,7 @@ interface Props {
 
 export const Editor = ({ grid }: Props) => {
     const [gridUpdate, setGridUpdate] = useState(false);
+    console.log(grid);
     const date = new Date(grid.ts);
     const { updateGrid } = useGrids();
     const firstUpdate = useRef(true);
@@ -40,14 +41,6 @@ export const Editor = ({ grid }: Props) => {
                             })
                         }
                     />
-                    <S.Label>
-                        Last updated:
-                        <span>
-                            {date.toDateString() +
-                                " " +
-                                date.toLocaleTimeString()}
-                        </span>
-                    </S.Label>
                 </S.GroupContainer>
                 <S.GroupContainer>
                     <Button
