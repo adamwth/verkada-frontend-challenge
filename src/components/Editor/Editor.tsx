@@ -13,8 +13,6 @@ interface Props {
 
 export const Editor = ({ grid }: Props) => {
     const [gridUpdate, setGridUpdate] = useState(false);
-    console.log(grid);
-    const date = new Date(grid.ts);
     const { updateGrid } = useGrids();
     const firstUpdate = useRef(true);
     useEffect(() => {
@@ -32,7 +30,6 @@ export const Editor = ({ grid }: Props) => {
                         label="Name"
                         size="small"
                         variant="standard"
-                        defaultValue="Untitled"
                         value={grid.name}
                         onChange={(e) =>
                             updateGrid(grid.id, {

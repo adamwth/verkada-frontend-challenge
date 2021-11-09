@@ -1,5 +1,4 @@
 import { Grid } from "./Grid";
-import { v4 as uuidv4 } from "uuid";
 
 const SAVED_GRIDS_KEY = "grids";
 

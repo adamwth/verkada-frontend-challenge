@@ -20,20 +20,12 @@ export const GridSquare = ({
     handleDrag,
 }: Props) => {
     const [hover, setHover] = useState(false);
-    const [{ isDragging, canDrag }, dragRef] = useDrag(() => ({
+    const [, dragRef] = useDrag(() => ({
         type: "camera",
         item: { row, col },
-        collect: (monitor) => ({
-            isDragging: monitor.isDragging(),
-            canDrag: monitor.canDrag(),
-        }),
     }));
-    const [{ isOver, canDrop }, dropRef] = useDrop(() => ({
+    const [, dropRef] = useDrop(() => ({
         accept: "camera",
-        collect: (monitor) => ({
-            isOver: monitor.isOver(),
-            canDrop: monitor.canDrop(),
-        }),
         drop: (item: Position) => {
             handleDrag(item, { row, col });
         },
