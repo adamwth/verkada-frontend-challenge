@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Button, TextField as MuiTextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { Delete, SaveAlt } from "@mui/icons-material";
-import { HRow } from "./common";
-import { GridLayout } from "./GridLayout/GridLayout";
-import { Data } from "../models/Grid";
-import { saveGrid } from "../models/Storage";
+import { GridLayout } from "../GridLayout/GridLayout";
+import { Data } from "../../models/Grid";
+import { saveGrid } from "../../models/Storage";
+import * as S from "./Editor.styles";
 
 interface Props {
     gridData: Data;
@@ -13,10 +12,9 @@ interface Props {
 
 export const Editor = ({ gridData }: Props) => {
     const [grid, setGrid] = useState(gridData);
-    // console.log(grid);
     return (
-        <Container>
-            <Toolbar>
+        <S.Container>
+            <S.Toolbar>
                 <TextField
                     label="Name"
                     size="small"
@@ -25,7 +23,7 @@ export const Editor = ({ gridData }: Props) => {
                     value={grid.name}
                     onChange={(e) => setGrid({ ...grid, name: e.target.value })}
                 />
-                <ButtonsContainer>
+                <S.ButtonsContainer>
                     <Button
                         variant="outlined"
                         startIcon={<SaveAlt />}
@@ -36,29 +34,9 @@ export const Editor = ({ gridData }: Props) => {
                     <Button variant="outlined" startIcon={<Delete />}>
                         Delete
                     </Button>
-                </ButtonsContainer>
-            </Toolbar>
+                </S.ButtonsContainer>
+            </S.Toolbar>
             <GridLayout gridData={grid} setGridData={setGrid} />
-        </Container>
+        </S.Container>
     );
 };
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-`;
-
-const Toolbar = styled(HRow)`
-    gap: 2rem;
-    justify-content: space-between;
-`;
-
-const ButtonsContainer = styled(HRow)`
-    gap: 1rem;
-    /* flex: 1; */
-`;
-
-const TextField = styled(MuiTextField)`
-    /* flex: 4; */
-`;

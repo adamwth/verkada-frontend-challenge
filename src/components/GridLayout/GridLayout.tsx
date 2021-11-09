@@ -1,10 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import { Data, Direction, Position } from "../../models/Grid";
-import { GridSquare } from "../GridSquare";
+import { GridSquare } from "../GridSquare/GridSquare";
 import { processCameras, processFloorplan } from "./GridLayout.logic";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
+import * as S from "./GridLayout.styles";
 
 interface Props {
     gridData: Data;
@@ -13,7 +13,6 @@ interface Props {
 
 export const GridLayout = ({ gridData, setGridData }: Props) => {
     const floorplan = processCameras(processFloorplan(gridData.floorplan));
-    // console.log(gridData);
     const handleClick =
         (row: number, col: number) => (direction: Direction) => {
             setGridData((gridData) => ({
@@ -45,7 +44,7 @@ export const GridLayout = ({ gridData, setGridData }: Props) => {
         });
     };
     return (
-        <Container>
+        <S.Container>
             <DndProvider backend={HTML5Backend}>
                 {floorplan.flatMap((row, rowIdx) =>
                     row.map((val, colIdx) => (
@@ -59,11 +58,6 @@ export const GridLayout = ({ gridData, setGridData }: Props) => {
                     ))
                 )}
             </DndProvider>
-        </Container>
+        </S.Container>
     );
 };
-
-const Container = styled.div`
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-`;
