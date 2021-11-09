@@ -37,7 +37,7 @@ export const Space = styled(Base)<{ multiplier: number }>`
     }
 `;
 
-export const CameraIcon = styled(Icons.Camera)<{ placing?: boolean }>`
+export const CameraIcon = styled(Icons.Camera)<{ placing: boolean }>`
     height: 100%;
     flex: 1;
     opacity: ${(props) => (props.placing ? 0.3 : 1)};

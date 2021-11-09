@@ -21,6 +21,7 @@ export const GridLayout = ({ id, floorplan }: Props) => {
                 {processedFloorplan.flatMap((row, rowIdx) =>
                     row.map((val, colIdx) => (
                         <GridSquare
+                            key={[rowIdx, colIdx].join(",")}
                             {...val}
                             row={rowIdx}
                             col={colIdx}
