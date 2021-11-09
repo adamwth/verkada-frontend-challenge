@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { SaveAlt } from "@mui/icons-material";
 import { GridLayout } from "../GridLayout/GridLayout";
@@ -12,8 +12,17 @@ interface Props {
 }
 
 export const Editor = ({ grid }: Props) => {
+    const [gridUpdate, setGridUpdate] = useState(false);
     const date = new Date(grid.ts);
     const { updateGrid } = useGrids();
+    const firstUpdate = useRef(true);
+    useEffect(() => {
+        if (firstUpdate.current) {
+            firstUpdate.current = false;
+            return;
+        }
+        setGridUpdate(true);
+    }, [grid]);
     return (
         <S.Container>
             <S.Toolbar>
@@ -43,8 +52,12 @@ export const Editor = ({ grid }: Props) => {
                 <S.GroupContainer>
                     <Button
                         variant="outlined"
+                        color={gridUpdate ? "secondary" : "primary"}
                         startIcon={<SaveAlt />}
-                        onClick={() => saveGrid(grid)}
+                        onClick={() => {
+                            saveGrid(grid);
+                            setGridUpdate(false);
+                        }}
                     >
                         Save
                     </Button>

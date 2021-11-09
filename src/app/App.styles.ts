@@ -19,4 +19,9 @@ export const theme = createTheme({
     typography: {
         fontFamily: "Jost",
     },
+    palette: {
+        secondary: {
+            main: "rgb(246, 156, 21)",
+        },
+    },
 });
