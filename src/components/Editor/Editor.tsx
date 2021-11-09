@@ -25,20 +25,19 @@ export const Editor = ({ grid }: Props) => {
     return (
         <S.Container>
             <S.Toolbar>
-                <S.GroupContainer>
-                    <TextField
-                        label="Name"
-                        size="small"
-                        variant="standard"
-                        value={grid.name}
-                        onChange={(e) =>
-                            updateGrid(grid.id, {
-                                ...grid,
-                                name: e.target.value,
-                            })
-                        }
-                    />
-                </S.GroupContainer>
+                <TextField
+                    label="Name"
+                    size="small"
+                    variant="standard"
+                    value={grid.name}
+                    onChange={(e) =>
+                        updateGrid(grid.id, {
+                            ...grid,
+                            name: e.target.value,
+                        })
+                    }
+                    style={{ flex: 2 }}
+                />
                 <S.GroupContainer>
                     <Button
                         variant="outlined"

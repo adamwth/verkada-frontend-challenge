@@ -25,7 +25,7 @@ const defaultGrid = (ts: number): Record<string, Grid> => ({
     default: {
         ts,
         id: "default",
-        name: "Untitled",
+        name: "My Awesome Verkada Camera Layout",
         ...data,
     },
 });
