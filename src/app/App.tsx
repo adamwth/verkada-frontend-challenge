@@ -18,8 +18,7 @@ function App() {
     }, []);
     return (
         <S.Dashboard>
-            <S.Container> bla </S.Container>
-            <S.Container style={{ flex: 3 }}>
+            <S.Container>
                 <Editor gridData={gridsList[selectedGrid][1]} />
             </S.Container>
         </S.Dashboard>

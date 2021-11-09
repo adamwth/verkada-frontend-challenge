@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const Dashboard = styled.div`
-    height: 100%;
-    padding: 0 10rem;
+    padding: 0 25vw;
     display: flex;
     gap: 2rem;
 `;
@@ -12,4 +11,5 @@ export const Container = styled.div`
     flex-direction: column;
     flex: 1;
     padding: 5rem 0;
+    box-sizing: border-box;
 `;
