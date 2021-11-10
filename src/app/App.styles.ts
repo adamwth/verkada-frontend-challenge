@@ -24,6 +24,12 @@ export const Anchor = styled.a`
     text-decoration: none;
 `;
 
+export const Instructions = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+`;
+
 export const theme = createTheme({
     typography: {
         fontFamily: "Jost",

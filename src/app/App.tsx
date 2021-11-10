@@ -13,6 +13,28 @@ function App() {
             <S.Dashboard>
                 <S.Container style={{ flex: 1 }}>
                     <S.Header>Verkada Frontend Tech Challenge</S.Header>
+                    <S.Instructions>
+                        <div>
+                            Read about the challenge description
+                            <S.Anchor href="https://github.com/adamwth/verkada-frontend-challenge/blob/master/Verkada_Front-end_Challenge.pdf">
+                                {" "}
+                                here
+                            </S.Anchor>
+                        </div>
+                        <div>
+                            How to use:
+                            <ul>
+                                <li>Try hovering over the grid on the right</li>
+                                <li>
+                                    Place a camera in any direction in any room
+                                </li>
+                                <li>Drag n' drop cameras from room to room!</li>
+                                <li>Save the grid</li>
+                            </ul>
+                            <span>Have fun!</span>
+                        </div>
+                    </S.Instructions>
+
                     <h3>Adam Chew</h3>
                     <S.Anchor href="mailto:yc875@cornell.edu">
                         ✉️ yc875@cornell.edu
